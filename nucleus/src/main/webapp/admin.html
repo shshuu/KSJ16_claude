@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리자 페이지</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js"></script>
+</head>
+<body onload="if (requireLogin()) { if (!isManagerRole()) { alert('관리자 권한 계정만 접근할 수 있습니다.'); location.href='main.html'; return; } updateRoleUI(); }">
+  <div class="page-shell">
+    <header class="layout-header">
+      <div>
+        <h1 class="page-title">관리자 페이지</h1>
+        <p class="page-subtitle">자산 현황은 첫 화면에서 바로 확인하고, 아래에서 계정과 게시판 관리로 이어집니다.</p>
+      </div>
+      <div class="top-actions">
+        <span class="pill" data-role-label></span>
+        <button class="btn btn-ghost" onclick="location.href='main.html'">메인으로</button>
+      </div>
+    </header>
+
+    <section class="monitoring-panel monitoring-panel-admin">
+      <div class="monitoring-copy">
+        <span class="panel-label">ASSET MONITORING</span>
+        <h2>자산 현황</h2>
+        <p class="muted">관리자 첫 화면에서 주요 자산 상태와 최근 갱신 시간을 바로 확인할 수 있도록 배치했습니다.</p>
+      </div>
+      <div class="asset-preview-card">
+        <div class="asset-preview-head">
+          <strong>운영 자산 목록</strong>
+          <button class="btn btn-ghost" type="button" onclick="location.href='asset.html'">상세 보기</button>
+        </div>
+        <div class="asset-preview-table">
+          <table>
+            <thead>
+              <tr>
+                <th>자산 번호</th>
+                <th>자산명</th>
+                <th>IP</th>
+                <th>상태</th>
+                <th>최근 갱신</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>웹 서버</td>
+                <td>10.0.0.10</td>
+                <td><span class="status-badge">정상</span></td>
+                <td>2026-04-15</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>DB 서버</td>
+                <td>10.0.0.20</td>
+                <td><span class="status-badge">정상</span></td>
+                <td>2026-04-14</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>백업 서버</td>
+                <td>10.0.0.30</td>
+                <td><span class="status-badge">점검 예정</span></td>
+                <td>2026-04-10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-stack">
+      <a class="tile feature-link" href="account.html">
+        <div>
+          <h3>계정 목록</h3>
+          <p class="muted">계정 생성, 수정, 제거 흐름을 세로 순서로 이어서 배치했습니다.</p>
+        </div>
+        <span class="feature-arrow">&rarr;</span>
+      </a>
+      <a class="tile feature-link" href="board_list.html">
+        <div>
+          <h3>게시판 관리</h3>
+          <p class="muted">관리자용 게시판 화면으로 자연스럽게 이어지도록 마지막에 배치했습니다.</p>
+        </div>
+        <span class="feature-arrow">&rarr;</span>
+      </a>
+    </section>
+  </div>
+</body>
+</html>

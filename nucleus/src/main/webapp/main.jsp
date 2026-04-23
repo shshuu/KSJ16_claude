@@ -1,0 +1,85 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+String loginId = (String) session.getAttribute("loginId");
+Integer roleNum = (Integer) session.getAttribute("roleNum");
+String roleDescription = (String) session.getAttribute("roleDescription");
+if (loginId == null) {
+    response.sendRedirect("login.jsp");
+    return;
+}
+if (roleDescription == null || roleDescription.trim().isEmpty()) {
+    roleDescription = roleNum != null && roleNum == 1 ? "administrator" : (roleNum != null && roleNum == 2 ? "mini_admin" : "standard");
+}
+boolean canAccessAdmin = roleNum != null && (roleNum == 1 || roleNum == 2);
+%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메인</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="layout-header">
+      <div>
+        <h1 class="page-title">메인 화면</h1>
+        <p class="page-subtitle">사용자 <strong><%= loginId %></strong> / 권한 <span class="pill"><%= roleDescription %></span></p>
+      </div>
+      <div class="top-actions">
+        <% if (canAccessAdmin) { %>
+        <button class="btn btn-ghost" onclick="location.href='admin.jsp'">관리자 페이지</button>
+        <% } %>
+        <button class="btn btn-secondary" onclick="location.href='logout.jsp'">로그아웃</button>
+      </div>
+    </header>
+
+    <section class="monitoring-panel">
+      <div class="monitoring-copy">
+        <span class="panel-label">MONITORING</span>
+        <h2>실시간 운영 흐름</h2>
+        <p class="muted">최근 구간의 활동량을 한눈에 보는 요약 차트입니다. 대시보드처럼 보이도록 상단 영역을 크게 구성했습니다.</p>
+      </div>
+      <div class="monitoring-chart" aria-label="모니터링 차트">
+        <div class="chart-grid">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="chart-area"></div>
+        <div class="chart-line">
+          <span class="point" style="left: 6%; bottom: 28%;"></span>
+          <span class="point" style="left: 24%; bottom: 46%;"></span>
+          <span class="point" style="left: 42%; bottom: 38%;"></span>
+          <span class="point" style="left: 60%; bottom: 62%;"></span>
+          <span class="point" style="left: 78%; bottom: 54%;"></span>
+          <span class="point" style="left: 92%; bottom: 76%;"></span>
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="6,72 24,54 42,62 60,38 78,46 92,24"></polyline>
+          </svg>
+        </div>
+        <div class="chart-labels">
+          <span>08시</span>
+          <span>10시</span>
+          <span>12시</span>
+          <span>14시</span>
+          <span>16시</span>
+          <span>18시</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-stack">
+      <article class="tile feature-link" onclick="location.href='board_list.jsp'">
+        <div>
+          <h3>게시판</h3>
+          <p class="muted">게시글 목록과 첨부파일을 확인하는 영역입니다. 모니터링 화면 아래로 배치해 흐름이 자연스럽게 이어지도록 조정했습니다.</p>
+        </div>
+        <span class="feature-arrow">&rarr;</span>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

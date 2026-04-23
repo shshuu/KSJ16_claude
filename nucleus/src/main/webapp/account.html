@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계정 목록</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js"></script>
+</head>
+<body onload="if (requireLogin()) { if (getRole() !== 'admin') { alert('관리자만 접근할 수 있습니다.'); location.href='main.html'; return; } }">
+  <div class="page-shell">
+    <header class="layout-header">
+      <div>
+        <h1 class="page-title">계정 목록</h1>
+        <p class="page-subtitle">`nc_user`, `nc_role` 기준 계정 관리 예시 화면입니다.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-primary" type="button">계정 생성</button>
+        <button class="btn btn-ghost" onclick="location.href='admin.html'">관리자 메인</button>
+      </div>
+    </header>
+    <section class="table-card">
+      <table>
+        <thead>
+          <tr><th>아이디</th><th>사용자 번호</th><th>권한</th><th>관리</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>admin</td><td>1</td><td>관리자</td>
+            <td class="inline-actions"><button class="btn btn-ghost" type="button">수정</button><button class="btn btn-danger" type="button">삭제</button></td>
+          </tr>
+          <tr>
+            <td>user</td><td>2</td><td>일반 사용자</td>
+            <td class="inline-actions"><button class="btn btn-ghost" type="button">수정</button><button class="btn btn-danger" type="button">삭제</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js"></script>
+</head>
+<body>
+  <div class="auth-shell">
+    <section class="auth-card">
+      <h1 class="page-title">통합 관리 포털</h1>
+      <p class="page-subtitle">권한에 따라 접근 가능한 화면을 구분해 확인할 수 있습니다.</p>
+      <form class="form-grid" onsubmit="handleLogin(event)">
+        <div class="field">
+          <label for="userId">아이디</label>
+          <input id="userId" name="userId" required>
+        </div>
+        <div class="field">
+          <label for="userPw">비밀번호</label>
+          <input id="userPw" name="userPw" type="password" required>
+        </div>
+        <div class="field">
+          <label for="role">임시 권한</label>
+          <select id="role" name="role">
+            <option value="standard">Standard</option>
+            <option value="mini_admin">Mini_Admin</option>
+            <option value="administrator">Administrator</option>
+          </select>
+        </div>
+        <div class="notice">DB 연동 전까지는 화면 확인용으로 권한을 직접 선택합니다.</div>
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">로그인</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const form = event.target;
+      setSession(form.userId.value, form.role.value);
+      location.href = "main.html";
+    }
+  </script>
+</body>
+</html>

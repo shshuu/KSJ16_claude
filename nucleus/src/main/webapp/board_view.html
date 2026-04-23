@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 확인</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js"></script>
+</head>
+<body onload="if (requireLogin()) { updateRoleUI(); renderBoardView(); }">
+  <div class="page-shell">
+    <header class="layout-header">
+      <div>
+        <h1 class="page-title">게시글 확인</h1>
+        <p class="page-subtitle">일반 사용자는 조회와 첨부파일 다운로드만 가능합니다.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-ghost" onclick="location.href='board_list.html'">목록으로</button>
+      </div>
+    </header>
+    <section class="board-view">
+      <h2 data-post-title>게시글 제목</h2>
+      <div class="board-meta">
+        <span>게시글 번호: <strong data-post-id></strong></span>
+        <span>작성자: <strong data-post-author></strong></span>
+        <span>작성일: <strong data-post-date></strong></span>
+      </div>
+      <div class="board-body">게시글 본문 표시 영역입니다.
+일반 사용자는 게시글 조회와 첨부파일 다운로드만 가능합니다.</div>
+      <div class="file-box">
+        <strong>첨부파일</strong>
+        <p class="muted" data-post-file></p>
+        <button class="btn btn-secondary" type="button">첨부파일 다운로드</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

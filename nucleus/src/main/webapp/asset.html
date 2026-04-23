@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자산 현황</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js"></script>
+</head>
+<body onload="if (requireLogin()) { if (getRole() !== 'admin') { alert('관리자만 접근할 수 있습니다.'); location.href='main.html'; return; } }">
+  <div class="page-shell">
+    <header class="layout-header">
+      <div>
+        <h1 class="page-title">자산 현황 페이지</h1>
+        <p class="page-subtitle">`nc_assets` 테이블 기준 예시 화면입니다.</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-ghost" onclick="location.href='admin.html'">관리자 메인</button>
+      </div>
+    </header>
+    <section class="table-card">
+      <table>
+        <thead>
+          <tr><th>자산 번호</th><th>자산명</th><th>IP</th><th>상태</th><th>최근 갱신일</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>웹 서버</td><td>10.0.0.10</td><td>정상</td><td>2026-04-15</td></tr>
+          <tr><td>2</td><td>DB 서버</td><td>10.0.0.20</td><td>정상</td><td>2026-04-14</td></tr>
+          <tr><td>3</td><td>백업 서버</td><td>10.0.0.30</td><td>점검 예정</td><td>2026-04-10</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
