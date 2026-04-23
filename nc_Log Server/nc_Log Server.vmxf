@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<Foundry>
-<VM>
-<VMId type="string">52 c5 4c 76 1a 93 98 be-96 86 95 ed 55 79 c1 e6</VMId>
-<ClientMetaData>
-<clientMetaDataAttributes/>
-<HistoryEventList/></ClientMetaData>
-<vmxPathName type="string">nc_Log Server.vmx</vmxPathName></VM></Foundry>
